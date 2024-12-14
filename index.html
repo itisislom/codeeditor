@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad By Islom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="title-bar">
+            <div class="window-controls">
+                <button class="control" id="minimize">─</button>
+                <button class="control" id="maximize">□</button>
+                <button class="control close" id="close">×</button>
+            </div>
+            <div class="title">Notepad By Islom</div>
+        </div>
+
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button class="tool-btn" id="new-file" title="Новый файл (Ctrl+N)">
+                    <i class="fas fa-file"></i>
+                </button>
+                <button class="tool-btn" id="open-file" title="Открыть (Ctrl+O)">
+                    <i class="fas fa-folder-open"></i>
+                </button>
+                <button class="tool-btn" id="save-file" title="Сохранить (Ctrl+S)">
+                    <i class="fas fa-save"></i>
+                </button>
+            </div>
+
+            <div class="toolbar-group">
+                <select id="language-select" class="select-style">
+                    <option value="plaintext">Текст</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                </select>
+            </div>
+
+            <div class="toolbar-group">
+                <select id="font-family" class="select-style">
+                    <option value="Fira Code">Fira Code</option>
+                    <option value="JetBrains Mono">JetBrains Mono</option>
+                    <option value="Monaco">Monaco</option>
+                    <option value="Consolas">Consolas</option>
+                </select>
+                <select id="font-size" class="select-style">
+                    <option value="12">12px</option>
+                    <option value="14">14px</option>
+                    <option value="16" selected>16px</option>
+                    <option value="18">18px</option>
+                    <option value="20">20px</option>
+                </select>
+            </div>
+
+            <div class="toolbar-group">
+                <button class="tool-btn" id="theme-toggle" title="Сменить тему">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="editor-container">
+            <div id="editor-area"></div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item" id="cursor-position">Строка: 1, Столбец: 1</div>
+            <div class="status-item" id="file-type">UTF-8</div>
+            <div class="status-item" id="language-status">Текст</div>
+        </div>
+    </div>
+
+    <input type="file" id="file-input" style="display: none">
+    <script src="editor.js"></script>
+</body>
+</html>

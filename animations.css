@@ -1,0 +1,51 @@
+/* Более мягкие и комфортные анимации */
+.monaco-editor .cursor {
+    transition: all 0.06s ease;
+}
+
+/* Плавное переключение темы */
+.app-wrapper, 
+.toolbar,
+.title-bar,
+.status-bar,
+.editor-container {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Анимации для кнопок */
+.tool-btn {
+    transition: all 0.2s ease;
+}
+
+.tool-btn:hover {
+    transform: translateY(-1px);
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+.tool-btn:active {
+    transform: translateY(0px);
+}
+
+/* Анимации для селектов */
+.select-style {
+    transition: border-color 0.2s ease;
+}
+
+.select-style:hover {
+    border-color: #007AFF;
+}
+
+/* Плавное появление подсказок */
+.monaco-editor .suggest-widget {
+    transition: opacity 0.15s ease;
+}
+
+/* Анимация для контролов окна */
+.control {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.control:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
