@@ -18,7 +18,6 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s ease;
 }
 
 .app-wrapper {
@@ -39,7 +38,7 @@ body {
 .window-controls {
     display: flex;
     gap: 8px;
-    margin-right: 16px;
+    padding: 0 12px;
     -webkit-app-region: no-drag;
 }
 
@@ -49,16 +48,51 @@ body {
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.control:hover {
-    transform: scale(1.1);
 }
 
 #minimize { background-color: #ffbd2e; }
 #maximize { background-color: #28c940; }
 .close { background-color: #ff5f57; }
+
+.title {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+}
+
+.tabs-container {
+    display: flex;
+    overflow-x: auto;
+    background: var(--toolbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 8px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    margin: 4px 4px 0;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab.active {
+    background: var(--bg-color);
+    border-bottom: 2px solid #007AFF;
+}
+
+.close-tab {
+    margin-left: 8px;
+    border: none;
+    background: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
 
 .toolbar {
     display: flex;
@@ -80,12 +114,6 @@ body {
     background-color: transparent;
     color: var(--text-color);
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tool-btn:hover {
-    background-color: rgba(128, 128, 128, 0.2);
-    transform: translateY(-1px);
 }
 
 .select-style {
@@ -95,11 +123,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.select-style:hover {
-    border-color: #007AFF;
 }
 
 .editor-container {
@@ -122,4 +145,33 @@ body {
 
 .status-item {
     margin-right: 16px;
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        flex-wrap: wrap;
+    }
+
+    .toolbar-group {
+        width: 100%;
+        justify-content: center;
+        margin: 4px 0;
+    }
+
+    .select-style {
+        width: 100%;
+    }
+
+    .status-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .status-item {
+        margin: 4px 0;
+    }
+
+    .window-controls {
+        display: none;
+    }
 }
