@@ -175,3 +175,45 @@ body {
         display: none;
     }
 }
+
+.tab-name-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.edit-icon {
+    font-size: 12px;
+    opacity: 0;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: opacity 0.2s ease;
+}
+
+.tab:hover .edit-icon {
+    opacity: 0.6;
+}
+
+.edit-icon:hover {
+    opacity: 1;
+}
+
+.tab-name {
+    cursor: text;
+}
+
+.tab-name-input {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: inherit;
+    padding: 2px 4px;
+    margin: 0;
+    outline: none;
+}
+
+.tab-name-input:focus {
+    border-color: #007AFF;
+}

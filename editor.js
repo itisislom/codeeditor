@@ -14,7 +14,7 @@ function saveState() {
     localStorage.setItem('editorState', JSON.stringify(state));
 }
 
-function createTab(content = '', name = 'Новый файл') {
+function createTab(content = '', name = 'Новый файл.txt') {
     const tab = {
         content: content,
         name: name,
@@ -33,22 +33,76 @@ function updateTabsUI() {
     tabs.forEach((tab, index) => {
         const tabElement = document.createElement('div');
         tabElement.className = `tab ${index === currentTabIndex ? 'active' : ''}`;
-        tabElement.innerHTML = `
-            <span>${tab.name}</span>
-            <button class="close-tab">×</button>
-        `;
         
-        // Обработчик клика по вкладке
-        tabElement.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('close-tab')) {
-                switchTab(index);
-            }
-        });
+        // Создаем контейнер для имени и иконки редактирования
+        const nameContainer = document.createElement('div');
+        nameContainer.className = 'tab-name-container';
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'tab-name';
+        nameSpan.textContent = tab.name;
+        
+        const editIcon = document.createElement('i');
+        editIcon.className = 'fas fa-pencil-alt edit-icon';
+        
+        nameContainer.appendChild(nameSpan);
+        nameContainer.appendChild(editIcon);
+        
+        // Обработчик редактирования
+        const startEdit = (e) => {
+            e.stopPropagation();
+            const input = document.createElement('input');
+            input.className = 'tab-name-input';
+            input.value = tab.name;
+            input.size = Math.max(tab.name.length, 10);
+            
+            const finishRename = () => {
+                const newName = input.value.trim();
+                if (newName) {
+                    tab.name = newName;
+                }
+                updateTabsUI();
+                saveState();
+            };
 
-        // Обработчик закрытия вкладки
-        tabElement.querySelector('.close-tab').addEventListener('click', (e) => {
+            input.addEventListener('blur', finishRename);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    finishRename();
+                }
+                if (e.key === 'Escape') {
+                    updateTabsUI();
+                }
+            });
+
+            nameContainer.replaceWith(input);
+            input.focus();
+            input.select();
+        };
+
+        // Добавляем обработчики для редактирования
+        nameSpan.addEventListener('dblclick', startEdit);
+        editIcon.addEventListener('click', startEdit);
+        
+        // Кнопка закрытия
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close-tab';
+        closeButton.textContent = '×';
+        closeButton.addEventListener('click', (e) => {
             e.stopPropagation();
             closeTab(index);
+        });
+
+        tabElement.appendChild(nameContainer);
+        tabElement.appendChild(closeButton);
+        
+        tabElement.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('close-tab') && 
+                !e.target.classList.contains('tab-name-input') &&
+                !e.target.classList.contains('edit-icon')) {
+                switchTab(index);
+            }
         });
 
         tabsContainer.appendChild(tabElement);
