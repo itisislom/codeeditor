@@ -151,7 +151,11 @@ require(['vs/editor/editor.main'], function() {
         fontFamily: 'Fira Code',
         fontSize: 16,
         automaticLayout: true,
-        minimap: { enabled: window.innerWidth > 768 }
+        minimap: { enabled: window.innerWidth > 768 },
+        wordWrap: 'on',
+        wrappingIndent: 'same',
+        wordWrapColumn: 80,
+        wrappingStrategy: 'advanced'
     });
 
     // Сохранение при изменении содержимого
